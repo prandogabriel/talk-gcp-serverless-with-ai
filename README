@@ -1,0 +1,27 @@
+# 
+
+```bash
+  go mod tidy
+  make run-local
+  curl localhost:8080
+```
+
+```bash
+  pack build \
+    --builder gcr.io/buildpacks/builder:v1 \
+    --env GOOGLE_FUNCTION_SIGNATURE_TYPE=http \
+    --env GOOGLE_FUNCTION_TARGET=HelloAI \
+    my-first-function
+```
+
+```bash 
+    gcloud functions deploy $FUNCTION_NAME \
+    --gen2 \
+    --project $YOUR_PROJECT_ID \
+    --runtime=go121 \
+    --region=us-east1 \
+    --source=. \
+    --entry-point=HelloAI \
+    --trigger-http \
+    --allow-unauthenticated
+```
